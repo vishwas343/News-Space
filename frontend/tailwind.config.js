@@ -12,7 +12,8 @@ export default withMT({
         primary: '#02816C',
         secondary: '#6DADA2',
         priDark: '#050301',
-        secDark:  '#424242'
+        secDark:  '#424242',
+        priOrange: '#fad6a5'
       }
     },
   },

@@ -78,7 +78,7 @@ function Blogs() {
       </div> */}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10 mt-3 md:mt-8 w-full">
-        {isLoading
+        {/* {isLoading
           ? Array.from({ length: 10 }).map((_, index) => (
               <BlogCardSkeleton key={index} />
             ))
@@ -92,7 +92,7 @@ function Blogs() {
                   img={blogInfo.img}
                 />
               </div>
-            ))}
+            ))} */}
       </div>
     </div>
   );

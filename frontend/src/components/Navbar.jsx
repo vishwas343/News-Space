@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 
 import logo from "../assets/logo.svg";
+import logo_dark from "../assets/logo_dark.svg"
 import dark_mode from "../assets/dark_mode_button.png";
 
 import { CgMenuRight } from "react-icons/cg";
@@ -38,33 +39,40 @@ function Navbar() {
 
   return (
     <div
-      className={`px-4 py-3 bg-gray-100 flex justify-between items-center relative z-10 duration-200 ${
-        mode === "light" ? "bg-gray-100" : "bg-priDark"
+      className={` p-4 bg-gray-100 flex justify-between items-center relative z-10 duration-200 ${
+        mode === "light" ? "bg-priOrange " : "bg-primary"
       }
       md:pl-10 md:pr-10 md:pt-7 
       `}
     >
-      <div className="">
+      <div className="md:ml-16">
         <Link to="/">
           <div className="flex justify-center items-center">
             <img
-              src={mode === "light" ? logo : logo}
+              src={mode === "light" ? logo : logo_dark}
               alt="logo of OnSpot"
-              className="h-16 w-auto max-w-full"
+              className="h-20 w-auto max-w-full"
             />
-            <div
-              className={`hidden md:block ml-2 ${
+            <div className="flex-col justify-center items-center">
+            <span
+              className={`block ml-2 flex mt-5  ${
                 mode === "light" ? "text-black" : "text-gray-100"
-              } duration-200`}
+              } duration-200 font-semibold text-[13px]`}
             >
-              OnSpot
+             जन आक्रोश
+           
+            
+            </span>
+            <span className={`ml-2   ${
+                mode === "light" ? "text-black" : "text-gray-100"
+              } text-[7px]`}>  सत्यं वद, समाचारं प्रदर्शय</span>
             </div>
           </div>
         </Link>
       </div>
 
       {/* This div is for everything other than the OnSpot logo */}
-      <div className="flex w-3/5 justify-evenly items-center md:w-4/5 ">
+      <div className="flex w-3/5 justify-end md:gap-x-14 md:mr-16 gap-x-4 items-center md:w-4/5 ">
         <div onClick={toggleMode} className="ml-3">
           <img src={mode === "light" ? dark_mode : light_mode} />
         </div>
@@ -124,7 +132,7 @@ function Navbar() {
         <div>
           {!isLoggedin ? (
             <Link to="/login">
-              <button className="bg-primary text-white px-4 py-1 rounded-xl">
+              <button className="bg-primary text-white px-4 py-1 rounded">
                 Login
               </button>
             </Link>
@@ -141,13 +149,13 @@ function Navbar() {
             </button>
           )}
         </div>
-        <div
+        {/* <div
           className={`md:hidden ${
             mode === "light" ? "text-priDark" : "text-gray-100"
           } font-thin duration-200`}
         >
           <FaSearch />
-        </div>
+        </div> */}
         <div
           onClick={toggle}
           className={`mobilemenu relative z-[99] ${
@@ -237,9 +245,9 @@ function Navbar() {
 
             <div className="flex text-white justify-center items-center">
               <div>
-                <img src={logo_w} />
+                <img src={logo} />
               </div>
-              <div className="ml-3 text-[17px]">OnSpot</div>
+              <div className="ml-3 text-[17px]">जन आक्रोश</div>
             </div>
           </div>
         </div>
