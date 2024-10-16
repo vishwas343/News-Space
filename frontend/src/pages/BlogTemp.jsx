@@ -5,7 +5,6 @@ import { vkyreq } from "../utils/vkyreq";
 import DOMPurify from "dompurify";
 import formatDateToMonthDay from "../utils/formatDateToMonthDay";
 import "./BlogTemp.css";
-import { IoHeartSharp } from "react-icons/io5";
 import "react-quill/dist/quill.snow.css"; // Ensure Quill styles are imported
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -30,23 +29,9 @@ function BlogTemp() {
   const [user, setUser] = useState({});
   const [headings, setHeadings] = useState([]);
   const [deleteStat, setDelStat] = useState(0);
-  const [likeState, setLike] = useState(0);
+
 
   const cancelConfirmRef = useRef(null);
-
-  const updateLikeOfCard = async (e) => {
-    e.stopPropagation();
-    try {
-      const res = await vkyreq("PATCH", `/   /${id}/likes`);
-      if (res.data.counter === 1) {
-        setLike((curr) => curr + 1);
-      } else {
-        setLike((curr) => curr - 1);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   useEffect(() => {
     const getBlog = async () => {
@@ -91,7 +76,6 @@ function BlogTemp() {
             img: res.data.data.img || "",
           });
 
-          setLike(res.data.data.like);
 
           setUser({
             username: res.data.data.user.username,
@@ -175,7 +159,7 @@ function BlogTemp() {
               >
                 <FaPencilAlt
                   className="hover:cursor-pointer"
-                  onClick={() => navigate(`/branch/${id}`)}
+                  onClick={() => navigate(`/write/${id}`)}
                 />{" "}
                 <FaTrash
                   className="hover:cursor-pointer text-red-800"
@@ -208,13 +192,12 @@ function BlogTemp() {
         <div className="text-3xl mt-4 lg:text-4xl">{body.heading}</div>
         <div className="flex justify-between">
           <span className="mt-3 lga:text-xl">
-            <span>{formattedDate}</span> by{" "}
-            <span className="text-primary font-semibold">{user.username}</span>
+            <span>{formattedDate}</span> 
           </span>{" "}
-          <span className="flex items-center" onClick={updateLikeOfCard}>
+          {/* <span className="flex items-center" onClick={updateLikeOfCard}>
             <span className="text-xs lg:text-lg">{likeState}</span>
             <IoHeartSharp className="h-6 w-6 lg:h-8 lg:w-8 rounded-full text-primary lg:ml-3 sm:ml-2 ml-1" />
-          </span>
+          </span> */}
         </div>
       </div>
       <div className="image-container mt-3">
@@ -222,7 +205,7 @@ function BlogTemp() {
           className="h-64 md:h-96 w-full object-cover"
           src={
             body.img ||
-            "https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            "https://static.toiimg.com/thumb/imgsize-21670,msid-113238540,width-400,resizemode-4/113238540.jpg"
           }
         />
       </div>

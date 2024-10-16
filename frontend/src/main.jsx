@@ -24,7 +24,7 @@ import BlogTemp from "./pages/BlogTemp";
 // import About from "./pages/About";
 // import Profile from "./pages/Profile";
 import Signin from "./pages/Signin";
-import Signup from "./pages/Signup";
+// import Signup from "./pages/Signup";
 import Branch from "./pages/Branch";
 // import Users from "./pages/Users";
 // import Settings from "./pages/Settings";
@@ -75,10 +75,6 @@ const paths = [
     element: <Signin />,
   },
   {
-    path: "/signup",
-    element: <Signup />,
-  },
-  {
     path: "/write/:id",
     element: (
       <ProtectedComponent>
@@ -87,77 +83,6 @@ const paths = [
     ),
   },
 ]
-
-
-// defining different routes in frontend
-// const paths = [
-//   {
-//     path: "/",
-//     element: <Home />,
-//   },
-//   {
-//     path: "/blogs",
-//     element: <Blogs />,
-//   },
-//   {
-//     path: "/blogs/:id",
-//     element: <BlogComponent />
-//   },
-//   {
-//     path: "/about",
-//     element: <About />,
-//   },
-//   {
-//     path: "/profile",
-//     element: (
-//       <ProtectedComponent>
-//         <Profile />
-//       </ProtectedComponent>
-//     ),
-//   },
-//   {
-//     path: "/profile/settings",
-
-//     element: (
-//       <ProtectedComponent>
-//         <Settings />
-//       </ProtectedComponent>
-//     ),
-//   },
-//   {
-//     path: "/users/:id",
-//     element: (
-//       <ProtectedComponent>
-//         <Users />
-//       </ProtectedComponent>
-//     ),
-//   },
-//   {
-//     path: "/login",
-//     element: <Signin />,
-//   },
-//   {
-//     path: "/signup",
-//     element: <Signup />,
-//   },
-//   {
-//     path: "/branch",
-//     element: (
-//       <ProtectedComponent>
-//         <Branch />
-//       </ProtectedComponent>
-//     ),
-//   },
-//   {
-//     path: "/branch/:id",
-//     element: (
-//       <ProtectedComponent>
-//         <Branch />
-//       </ProtectedComponent>
-//     ),
-//   },
-// ];
-
 
 
 
@@ -172,7 +97,7 @@ const AppComponent = () => {
   const isExcludedRoute = excludedRoutes.includes(location.pathname);
 
   // creating state of mode to pass in the ModeContext to track whether light mode is on or dark mode
-  const [mode, setMode] = useState("dark");
+  const [mode, setMode] = useState("light");
 
   // this is to check if the user is logged in or not and this is done by tracking if the cookie is passed in the page or not.
   const [isLoggedin, setLoggedin] = useState(false);
@@ -184,6 +109,7 @@ const AppComponent = () => {
     username: "",
     about: "",
     _id: "",
+    role: "",
   });
 
   // this useEffect is to track whether user is logged in or not.
@@ -199,12 +125,6 @@ const AppComponent = () => {
           setLoggedin(false);
         }
 
-        if (getCookie("theme")) {
-          setMode(getCookie("theme"));
-        } else {
-          setMode("dark");
-          setCookie("theme", mode);
-        }
       } catch (error) {
         setLoggedin(false);
         deleteCookie("jwt");
