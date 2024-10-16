@@ -1,16 +1,12 @@
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import GoogleAuthImg from "../components/AuthComponents/GoogleAuthImg";
 import { setCookie } from "../utils/Cookies";
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { LoggedInContext, UserContext } from "../main";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { vkyreq } from "../utils/vkyreq";
 
 function Signin() {
   // importing all environment variables
-  const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
   const backend  = import.meta.env.VITE_BACKEND_URL;
   const JWTexpireIn = import.meta.env.VITE_JWT_EXPIRES_IN;
 
@@ -22,7 +18,6 @@ function Signin() {
   const sendLogin = async (userData) => {
     try {
       const res = await axios.post(backend + "/auth/login", userData);
-      console.log(res.data.token);
       
       setCookie("jwt", res.data.token, JWTexpireIn || 90);
       setLoggedin(true);
@@ -92,37 +87,12 @@ function Signin() {
             }}
           />
         </div>
-
-        <div className="text-white text-xs  mt-3 text-right underline rounded-md">
-          Forget Password?
-        </div>
         <div>
           <div> 
             <button className="bg-white text-xl text-primary w-full mt-8 pt-3 pb-3 rounded-3xl" onClick={()=>sendLogin(userInfo)}>
               Login
             </button>
-            <div className="text-white w-full text-center mt-3 text-xs">
-              -OR-
-            </div>
-            <div className="text-white w-full text-center text-[10px] mt-3">
-              Sign in with
-            </div>
-
-            {/* Wrap GoogleLogin component inside GoogleOAuthProvider */}
-            <GoogleOAuthProvider clientId={clientId}>
-              <GoogleAuthImg
-                updatingUserInfo={setUserInfo}
-                trackUserInfo={setUpdated}
-              />
-            </GoogleOAuthProvider>
-
-            {/* for the Sign up button */}
-            <div className="text-[12px] text-white  text-left mt-2">
-              <Link to="/signup">
-                <span>Don't have an account? </span>
-                <span className="font-extrabold">Create one</span>
-              </Link>
-            </div>
+            
           </div>
         </div>
       </div>

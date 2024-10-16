@@ -10,7 +10,7 @@ GET /api/v1/posts/tags // to get the posts related to that tag
 
 router
     .route("/")
-    .get(
+    .post(
         tagsController.getPostsOfTags // get posts from tags takes tag from body
     )
 

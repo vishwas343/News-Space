@@ -4,14 +4,15 @@ const PostModel = require("../model/postModel");
 const AppError = require("../utils/appError");
 
 const getPostsOfTags = catchAsync(async (req, res, next) => {
-  if (!req.body.tags) {
-    return next(new AppError("No tags specified", 400));
+  if (!req.body.tags || !Array.isArray(req.body.tags)) {
+    return next(new AppError("No valid tags specified", 400));
   }
 
-  req.body.tags = req.body.tags.map((ele) => ele.toLowerCase());
+  // Convert all tags to lowercase
+  req.body.tags = req.body.tags.map((tag) => tag.toLowerCase());
 
   const posts = await PostModel.find({
-    tags: { $all: req.body.tags },
+    tags: { $all: req.body.tags }, // Find posts with all specified tags
   });
 
   if (posts.length === 0) {
@@ -28,6 +29,7 @@ const getPostsOfTags = catchAsync(async (req, res, next) => {
     data: posts,
   });
 });
+
 
 const getAllTags = catchAsync(async (req, res, next) => {
   const tags = await PostModel.aggregate([

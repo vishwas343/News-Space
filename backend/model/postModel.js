@@ -30,7 +30,7 @@ const postSchema = new mongoose.Schema({
     status: {
         type: String,
         enum: ['moderation', 'blogs', 'projects', 'rejected'],
-        default: 'moderation'
+        default: 'blogs'
     }
 }, {
     toJSON: {

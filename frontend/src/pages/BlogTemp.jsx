@@ -175,7 +175,7 @@ function BlogTemp() {
               >
                 <FaPencilAlt
                   className="hover:cursor-pointer"
-                  onClick={() => navigate(`/branch/${id}`)}
+                  onClick={() => navigate(`/write/${id}`)}
                 />{" "}
                 <FaTrash
                   className="hover:cursor-pointer text-red-800"
