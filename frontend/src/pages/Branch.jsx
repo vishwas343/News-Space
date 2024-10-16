@@ -266,7 +266,7 @@ function Branch() {
         <div className="text-xl mb-2">
           <input
             type="text"
-            placeholder="Branch heading..."
+            placeholder="Write heading..."
             className={`w-full md:text-3xl p-2 rounded-md focus:outline-none transition-colors duration-200 ${
               mode === "light"
                 ? "bg-gray-100 text-black"

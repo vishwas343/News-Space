@@ -45,7 +45,7 @@ function Blogs() {
         mode === "light" ? "bg-gray-100 text-black" : "bg-priDark text-white"
       } duration-200 pb-6 min-h-screen`}
     >
-      <div className="font-bold text-[30px] ml-5">News Articles</div>
+      <div className="font-bold text-[30px] ml-5">Headlines</div>
       
       <Categories onSelectCategory={fetchNews} /> {/* Pass fetchNews to Categories */}
 

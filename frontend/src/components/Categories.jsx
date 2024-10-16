@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { vkyreq } from "../utils/vkyreq";
+import PropTypes from "prop-types"; // Import PropTypes
 
 function Categories({ onSelectCategory }) {
     const [tags, setTags] = useState([]);
@@ -37,7 +38,7 @@ function Categories({ onSelectCategory }) {
                             : "bg-blue-500 text-white"
                     } rounded-lg hover:bg-blue-600 transition-colors`}
                 >
-                    General
+                    Latest
                 </button>
 
                 {tags.map((tag, index) => (
@@ -57,5 +58,10 @@ function Categories({ onSelectCategory }) {
         </div>
     );
 }
+
+// Prop validation
+Categories.propTypes = {
+    onSelectCategory: PropTypes.func.isRequired, // Validate that onSelectCategory is a required function
+};
 
 export default Categories;
